@@ -26,8 +26,8 @@ urlpatterns = [                                                  # Se anidan los
     path('api/', include('profiles_api.urls')),
 
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'), # Visual en formato Json
-    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'), # Visual en formato swagger standard
-    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'), # Visual en formato redoc
+    path(r'swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'), # Visual en formato swagger standard
+    path(r'redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'), # Visual en formato redoc
 ]
 
 

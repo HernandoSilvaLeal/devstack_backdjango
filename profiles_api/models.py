@@ -45,3 +45,5 @@ class UserProfile(AbstractBaseUser,PermissionsMixin):       # Modelo Base de Dat
 
     def _str_(self):                                        # Retornar Codena Representando Nuestro Usuario 
         return self.email
+
+
