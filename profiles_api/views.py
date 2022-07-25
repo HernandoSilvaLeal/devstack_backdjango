@@ -4,8 +4,7 @@ from rest_framework.response import Response          #
 from rest_framework import status                     # 
 
 # Importaciones del proyecto
-from profiles_api import serializers                   # Importamos los serializers ya creados.
-
+from profiles_api import serializers                   # Importamos los serializers ya creados
 
 class HelloApiView(APIView):                           # Clase de Api View de Prueba
 

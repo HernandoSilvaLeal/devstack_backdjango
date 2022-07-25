@@ -30,17 +30,26 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+BASE_APPS = [                           # Division de apps nativas de django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework.authtoken',
+]
+
+LOCAL_APPS = [                          # Division de de apps en desarrollo
     'profiles_api',
 ]
+
+THIRD_APPS = [                          # Division de apps de terceros, ej Swagger.
+    'rest_framework',           
+    'rest_framework.authtoken',
+    'drf_yasg',
+]
+
+INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
