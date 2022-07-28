@@ -49,6 +49,7 @@ THIRD_APPS = [                          # Division de apps de terceros, ej Swagg
     'rest_framework',           
     'rest_framework.authtoken',
     'drf_yasg',
+    'corsheaders',                      # Añadimos la app ya que se acaba de instalar
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -56,6 +57,7 @@ INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # ----------> Lo añadimo como middleware segun la documentacion.
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
