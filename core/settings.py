@@ -109,6 +109,10 @@ DATABASES = { # pip install psycopg2-binary
 }
 
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField' # Config predeterminada para autogenerar las PK
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -148,8 +152,20 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' # -----------> ID Autogenerado y Autoincremental
+# # https://stackoverflow.com/questions/66971594/auto-create-primary-key-used-when-not-defining-a-primary-key-type-warning-in-dja
 
 AUTH_USER_MODEL = 'profiles_api.UserProfile' 
 # Se redirecciona a django para que use este modelo para registro y autenticacion de usuarios
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
+
+CORS_ALLOWED_ORIGINS = [ # Dominios habilitados desde los cuales se permiten solicitudes request.
+    "http://127.0.0.1:3000",
+    "http://localhost:3000"
+]

@@ -15,7 +15,7 @@ class Post(models.Model):
 
     class PostObjects(models.Manager):
         def get_queryset(self):
-            return super().get_queryset() .filter(status='published')
+            return super().get_queryset().filter(status='published')
 
     options = (
         ('draft', 'Draft'),
@@ -29,7 +29,7 @@ class Post(models.Model):
     published = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='blog_posts')
     status = models.CharField(max_length=10, choices=options, default='published')
-    objects = models.Manager() 
+    objects = models.Manager() # Variable que guarda el manejador de objetos, punto crucial para hacer las consultas.
     postobjects = PostObjects() 
 
     class Meta:
