@@ -21,14 +21,19 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [                                                  # Se anidan los urls de las apps
-    path('', include('profiles_api.urls')),
     path('admin/', admin.site.urls),
-    path('api/', include('profiles_api.urls')),
+    path('profiles/', include('profiles_api.urls')),
+    # path('', include('profiles_api.urls')),
+
+    path('api/', include('blog_api.urls', namespace='blog_api')),
+    path('', include('blog.urls', namespace='blog')),
 
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'), # Visual en formato Json
     path(r'swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'), # Visual en formato swagger standard
     path(r'redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'), # Visual en formato redoc
 ]
+
+
 
 
 """core URL Configuration

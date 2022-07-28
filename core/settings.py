@@ -41,6 +41,8 @@ BASE_APPS = [                           # Division de apps nativas de django
 
 LOCAL_APPS = [                          # Division de de apps en desarrollo
     'profiles_api',
+    'blog',
+    'blog_api',
 ]
 
 THIRD_APPS = [                          # Division de apps de terceros, ej Swagger.
@@ -85,10 +87,24 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+"""
+
+# ------> pip install psycopg2-binary para conexion a base de datos postgresql
+DATABASES = { # pip install psycopg2-binary
+    'default':{
+        'ENGINE':'django.db.backends.postgresql',
+        'HOST':'localhost',
+        'PORT':'5432',
+        'USER':'postgres',
+        'PASSWORD':'Nandop*963',
+        'NAME':'devstackdb',
     }
 }
 
