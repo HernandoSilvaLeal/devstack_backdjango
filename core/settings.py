@@ -164,7 +164,10 @@ AUTH_USER_MODEL = 'profiles_api.UserProfile'
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication', # ------------> Se añade esta dependencia para utilizar JWT
+    )
 }
 
 CORS_ALLOWED_ORIGINS = [ # Dominios habilitados desde los cuales se permiten solicitudes request.
