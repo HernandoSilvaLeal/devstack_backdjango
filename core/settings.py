@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+from datetime import timedelta # Importacion para configurar simple JWT
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -43,6 +46,7 @@ LOCAL_APPS = [                          # Division de de apps en desarrollo
     'profiles_api',
     'blog',
     'blog_api',
+    'users',
 ]
 
 THIRD_APPS = [                          # Division de apps de terceros, ej Swagger.
@@ -50,6 +54,8 @@ THIRD_APPS = [                          # Division de apps de terceros, ej Swagg
     'rest_framework.authtoken',
     'drf_yasg',
     'corsheaders',                      # Añadimos la app ya que se acaba de instalar
+    'rest_framework_simplejwt',
+    #'rest_framework_simplejwt.token_blacklist',  Es para activar BLACKLIST_AFTER_ROTATION segun documentacion
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -158,7 +164,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' # -----------> ID Autogenerado y Autoincremental
 # # https://stackoverflow.com/questions/66971594/auto-create-primary-key-used-when-not-defining-a-primary-key-type-warning-in-dja
 
-AUTH_USER_MODEL = 'profiles_api.UserProfile' 
+# AUTH_USER_MODEL = 'profiles_api.UserProfile' 
+AUTH_USER_MODEL = 'users.NewUser' # -------> Customizacion de creacion de usuarios.
+
 # Se redirecciona a django para que use este modelo para registro y autenticacion de usuarios
 
 REST_FRAMEWORK = {
@@ -174,3 +182,18 @@ CORS_ALLOWED_ORIGINS = [ # Dominios habilitados desde los cuales se permiten sol
     "http://127.0.0.1:3000",
     "http://localhost:3000"
 ]
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5), # Tiempo valido para el token de acceso
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),   #Tiempo valido para el token de actualizacion
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+}

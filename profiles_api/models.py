@@ -27,23 +27,23 @@ class UserProfileManager(BaseUserManager):                  # Manager para Perfi
 
 
 class UserProfile(AbstractBaseUser,PermissionsMixin):       # Modelo Base de Datos para Usuarios en el Sistema
-    email=models.EmailField(max_length=255,unique=True)
-    name=models.CharField(max_length=255)
-    is_active=models.BooleanField(default=True)
-    is_staff=models.BooleanField(default=False)
+    namep=models.CharField(max_length=255)
+    emailp=models.EmailField(max_length=255,unique=True)
+    is_activep=models.BooleanField(default=True)
+    is_staffp=models.BooleanField(default=False)
 
-    objects = UserProfileManager()
+    objectsp = UserProfileManager()
 
     USERNAME_FIELD='email'
     REQUIRED_FIELDS=['name']
 
     def get_full_name(self):                                # Obtener Nombre Completo del Usuario
-        return self.name
+        return self.namep
 
     def get_short_name(self):                               # Obtener nombre corto
-        return self.name
+        return self.namep
 
     def _str_(self):                                        # Retornar Codena Representando Nuestro Usuario 
-        return self.email
+        return self.emailp
 
 
