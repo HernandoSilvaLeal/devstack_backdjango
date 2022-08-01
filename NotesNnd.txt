@@ -1,6 +1,0 @@
-pip install coverage ---> para pruebas de cobertura.
-coverage run --omit '*/venv/*' manage.py test
-coverage html ---> htmlcov
-
-
-
