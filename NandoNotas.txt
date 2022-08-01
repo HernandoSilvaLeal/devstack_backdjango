@@ -58,3 +58,8 @@ Inicio el servidor y reviso el http://127.0.0.1:8000/usuario/usuario/ las estruc
 Reviso la data en formato json con la opcion nativa de django rest framework = http://127.0.0.1:8000/usuario/usuario/?format=json
 Todo ok y commit.
 
+=> Refactorizacion de codigo y testeo en postman
+Separacion de queryset
+Mejoramiento de los reponse http
+Comentarios en codigo
+Testeo en postman de los metodos CRUD

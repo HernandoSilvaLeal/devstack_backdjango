@@ -4,7 +4,7 @@ from rest_framework.views import APIView                                      # 
 from rest_framework.decorators import api_view                                # Importo la funcion api_view para utilizar vistas con decoradores
 
 from apps.users.models import User                                            # Importo el modelo que voya usar para la consulta de datos de la BD
-from apps.users.api.serializers import UserSerializer                         # Importo el serializador para transformar la data de la BD a JSON
+from apps.users.api.serializers import UserSerializer, TestUserSerializer     # Importo el serializador para transformar la data de la BD a JSON
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'])                          # Agrupacion de metodos generales sin pk
@@ -14,6 +14,17 @@ def user_api_view(request):                                                   # 
     if request.method == 'GET':
         users = User.objects.all() # Queryset
         users_serializers = UserSerializer(users, many = True)
+
+        test_data = {
+            'name':'Caster Test',
+            'email':'Caster@gmail.com'
+        }
+        test_user = TestUserSerializer(data = test_data, context = test_data)
+        if test_user.is_valid():
+            print("Paso Validaciones")
+        else:
+            print(test_user.errors)
+
         return Response( users_serializers.data, status = status.HTTP_200_OK)  # Codigos HTTP de respuesta.
 
     # Create
