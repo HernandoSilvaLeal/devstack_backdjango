@@ -57,3 +57,4 @@ corrijo errores de sintaxis e importaciones.
 Inicio el servidor y reviso el http://127.0.0.1:8000/usuario/usuario/ las estrucuras de rooteo
 Reviso la data en formato json con la opcion nativa de django rest framework = http://127.0.0.1:8000/usuario/usuario/?format=json
 Todo ok y commit.
+
