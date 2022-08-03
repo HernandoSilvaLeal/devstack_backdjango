@@ -1,5 +1,3 @@
-
-
 django-admin startproject swdevstackcore
 
 django-admin startapp users
@@ -10,6 +8,14 @@ django-admin startapp metrics
 django-admin startapp resources
 django-admin startapp standards
 django-admin startapp users
+
+users
+projects
+assets
+activities
+metrics
+resources
+standards
 
 pip install django-simple-history
 simple_history.middleware.HistoryRequestMiddleware
