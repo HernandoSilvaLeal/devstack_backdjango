@@ -46,12 +46,12 @@ class ResourcecategoryModel(HelpsModel):
 
 
 # 6.3 ResourcesModel
-class ResourcesModel(BaseModel):
+class ResourcesModel(ResourcecategoryModel):
 
     title = models.CharField('Titulo del Recurso', max_length=50)
     description = models.CharField('Descripcion del Recurso', max_length=200)
-    link = models.CharField(max_length=100, default='', null=True, blank=True)
     image = models.ImageField('Logotipo', upload_to='resources/', blank=True, null=True)
+    link = models.CharField(max_length=100, default='', null=True, blank=True)
 
     class Meta:
         ordering = ['-id']                                                                              # Orden descendente o ascendente        
