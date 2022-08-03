@@ -1,3 +1,5 @@
+Revisar el tema de subir imagenes
+
 django-admin startproject swdevstackcore
 
 django-admin startapp activities

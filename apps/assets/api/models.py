@@ -1,5 +1,6 @@
 from django.db import models
 from apps.base.models import BaseModel
+from apps.projects.api.models import CompaniesModel
 
 # Parte 0: Importaciones necesarias para las relaciones entre modelos.
 # Parte 1: Model ---> El nombre del modelo (Tabla o Entidad)
@@ -12,7 +13,27 @@ from apps.base.models import BaseModel
 # 3.1 AssetsModel
 class AssetsModel(BaseModel):
 
+    options_type = (
+        ('fisico', 'Fisico'),
+        ('informatico', 'Informatico'),
+        ('servicio', 'Servicio'),
+        ('personal', 'Personal'),
+    )
     
+    options_substate = (
+        ('fisico', 'Fisico'),
+        ('informatico', 'Informatico'),
+        ('servicio', 'Servicio'),
+        ('personal', 'Personal'),
+    )
+    name = models.CharField("Nombre del Activo", max_length=50, unique=True, blank=False, null=False)
+    type = models.CharField('Tipo del Activo', max_length=20, choices=options_type, default='Ninguna')
+    appraisal = models.DecimalField('Avaluo', max_digits=5, decimal_places=2)
+    description = models.TextField("Descripcion General", max_length=200, blank=False, null=False)
+    company = models.ForeignKey(CompaniesModel, verbose_name=_("Empresa"), on_delete=models.CASCADE)
+    location = models.CharField("Nombre del Activo", max_length=50, unique=True, blank=False, null=False)
+    substate = models.CharField('Tipo del Activo', max_length=20, choices=options_substate, default='Ninguna')
+    Creacion = models.DateTimeField(auto_now_add=True)
     class Meta:
         verbose_name = _("AssetsModel")
         verbose_name_plural = _("AssetsModels")
@@ -23,9 +44,16 @@ class AssetsModel(BaseModel):
 
 
 # 3.2 PhysicalassetsModel
-class PhysicalassetsModel(BaseModel):
+class PhysicalassetsModel(AssetsModel):
 
-    
+    title = models.CharField('Titulo del Activo Fisico', max_length=50)
+    notes = models.CharField('Notas', max_length=200)
+    imageUpload = models.ImageField('Imagen Adjunta', upload_to='assets/', blank=True, null=True)
+    delegated = models.CharField('Responsable', max_length=50)
+    check = models.BooleanField(default = False)
+    corrected = models.BooleanField(default = False)
+    managed = models.BooleanField(default = False)
+    category_assets = models.ForeignKey(AssetsModel, on_delete=models.CASCADE, verbose_name='Categoria de Activo', null=True) # default=1
 
     class Meta:
         verbose_name = _("PhysicalassetsModel")
@@ -36,9 +64,16 @@ class PhysicalassetsModel(BaseModel):
 
 
 # 3.3 InformationassetsModel
-class InformationassetsModel(BaseModel):
+class InformationassetsModel(AssetsModel):
 
-    
+    title = models.CharField('Titulo del Activo Informatico', max_length=50)
+    notes = models.CharField('Notas', max_length=200)
+    imageUpload = models.ImageField('Imagen Adjunta', upload_to='assets/', blank=True, null=True)
+    delegated = models.CharField('Responsable', max_length=50)
+    check = models.BooleanField(default = False)
+    corrected = models.BooleanField(default = False)
+    managed = models.BooleanField(default = False)
+    category_assets = models.ForeignKey(AssetsModel, on_delete=models.CASCADE, verbose_name='Categoria de Activo', null=True) # default=1
 
     class Meta:
         verbose_name = _("InformationassetsModel")
@@ -50,9 +85,16 @@ class InformationassetsModel(BaseModel):
 
 
 # 3.4 ServiceassetsModel
-class ServiceassetsModel(BaseModel):
+class ServiceassetsModel(AssetsModel):
 
-    
+    title = models.CharField('Titulo del Activo Servicio', max_length=50)
+    notes = models.CharField('Notas', max_length=200)
+    imageUpload = models.ImageField('Imagen Adjunta', upload_to='assets/', blank=True, null=True)
+    delegated = models.CharField('Responsable', max_length=50)
+    check = models.BooleanField(default = False)
+    corrected = models.BooleanField(default = False)
+    managed = models.BooleanField(default = False)
+    category_assets = models.ForeignKey(AssetsModel, on_delete=models.CASCADE, verbose_name='Categoria de Activo', null=True) # default=1
 
     class Meta:
         verbose_name = _("ServiceassetsModel")
@@ -63,9 +105,16 @@ class ServiceassetsModel(BaseModel):
 
 
 # 3.5 PersonalassetsModel
-class PersonalassetsModel(BaseModel):
+class PersonalassetsModel(AssetsModel):
 
-    
+    title = models.CharField('Titulo del Activo Personal', max_length=50)
+    notes = models.CharField('Notas', max_length=200)
+    imageUpload = models.ImageField('Imagen Adjunta', upload_to='assets/', blank=True, null=True)
+    delegated = models.CharField('Responsable', max_length=50)
+    check = models.BooleanField(default = False)
+    corrected = models.BooleanField(default = False)
+    managed = models.BooleanField(default = False)
+    category_assets = models.ForeignKey(AssetsModel, on_delete=models.CASCADE, verbose_name='Categoria de Activo', null=True) # default=1
 
     class Meta:
         verbose_name = _("PersonalassetsModel")
