@@ -37,6 +37,7 @@ BASE_APPS = [
 ]
 
 LOCAL_APPS = [
+    'apps.base'
     'apps.users'
     'apps.projects'
     'apps.assets'

@@ -12,29 +12,43 @@ from apps.base.models import BaseModel
 # 2.1 ProjectsModel
 class ProjectsModel(BaseModel):
 
-    
+    nameproject = models.CharField("Nombre del Proyecto", max_length=50, unique=True, blank=False, null=False)
+    budget = models.IntegerField('Presupuesto en pesos')
+    objetives = models.TextField('Objetivos del Proyecto')
+    number_of_stages = models.IntegerField('Cantidad de Etapas')
+    dateinitial = models.DateField('Fecha Inicio de Proyecto', auto_now=False, auto_now_add=False) # Revisar relacion foranea a un campo especifico modelo metrics
+    datecompletion = models.DateField('Fecha Inicio de Proyecto', auto_now=False, auto_now_add=False) # Revisar relacion foranea a un campo especifico. modelo metrics
+    current_month = models.IntegerField('Mes en curso del prouecto')
+    adminproject = models.CharField('Responsable', max_length=50) # Revisar construccion de relacion con users
+    auditorproject =  models.CharField('Responsable', max_length=50) # Revisar construccion de relacion con users
+    leaderproject =  models.CharField('Responsable', max_length=50) # Revisar construccion de relacion con users
+    percentage_of_progress = models.IntegerField('Porcentaje de Avance') # Revisar como calcular campo, y como ponerlo en bd como %
 
     class Meta:
-        verbose_name = _("ProjectsModel")
-        verbose_name_plural = _("ProjectsModels")
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
+        verbose_name = 'ProjectsModel'
+        verbose_name_plural = 'ProjectsModels'
 
     def __str__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return reverse("ProjectsModel_detail", kwargs={"pk": self.pk})
-
-
 
 
 # 2.2 CompaniesModel
 class CompaniesModel(BaseModel):
 
-    
+    comercial_name = models.CharField('Razon Social', max_length=50)
+    nit = models.CharField('Nit', max_length=11)
+    slogan = models.CharField('Slogan', max_length=100)
+    logo = models.ImageField('Logotipo', upload_to='projects/', blank=True, null=True)
+    number_of_areas = models.IntegerField('Cantidad de Areas')
+    amount_of_assets = models.IntegerField('Cantidad de Activos')
+    project = models.ForeignKey(ProjectsModel.nameproject, verbose_name=_(""), on_delete=models.CASCADE)
+    notes = models.CharField('Notas', max_length=200)
 
     class Meta:
-        verbose_name = _("CompaniesModel")
-        verbose_name_plural = _("CompaniesModels")
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
+        verbose_name = 'CompaniesModel'
+        verbose_name_plural = 'CompaniesModels'
 
     def __str__(self):
         return self.name
@@ -43,25 +57,48 @@ class CompaniesModel(BaseModel):
 
 # 2.3 StagesModel
 class StagesModel(BaseModel):
-
     
+    options = (
+        ('primera', 'Primera'),
+        ('segunda', 'Segunda'),
+        ('tercera', 'Tercera'),
+        ('cuarta', 'Cuarta'),
+        ('quinta', 'Quinta'),
+        ('sexta', 'Sexta'),
+        ('septima', 'Septima'),
+        ('octava', 'Octava'),
+        ('novena', 'Novena'),
+        ('decima', 'Decima'),
+        ('undecima', 'Undecima'),
+        ('duodecima', 'Duodecima'),
+    )
+
+    comercial_name = models.CharField('Nombre de la Etapa', max_length=50)
+    number_stage = models.IntegerField('Cantidad de Etapas', choices=options, default = 1)
+    type = models.CharField('Tipo de Actividad', max_length=20, choices=options, default='Ninguna')
+    date_dalivery_stage = models.DateField('Fecha Entrega Etapa 1', auto_now=False, auto_now_add=True)
 
     class Meta:
-        verbose_name = _("StagesModel")
-        verbose_name_plural = _("StagesModels")
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
+        verbose_name = 'StagesModel'
+        verbose_name_plural = 'StagesModels'
 
     def __str__(self):
         return self.name
 
 
 # 2.4 AreasModel
-class AreasModel(BaseModel):
+class AreasModel(CompaniesModel):
 
-    
+    name_area = models.CharField('Nombre del Area', max_length=50)
+    leader = models.ForeignKey(ProjectsModel.leaderproject, verbose_name=_(""), on_delete=models.CASCADE)
+    company = models.ForeignKey(CompaniesModel.comercial_name, verbose_name=_(""), on_delete=models.CASCADE)
+    notes = models.CharField('Notas', max_length=200)
 
     class Meta:
-        verbose_name = _("AreasModel")
-        verbose_name_plural = _("AreasModels")
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
+        verbose_name = 'AreasModel'
+        verbose_name_plural = 'AreasModels'
 
     def __str__(self):
         return self.name

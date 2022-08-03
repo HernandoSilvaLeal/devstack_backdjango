@@ -28,7 +28,7 @@ class ActivitiesModel(BaseModel):
     area = models.ForeignKey(AreasModel, verbose_name="Area de la Empresa", on_delete=models.CASCADE)
     Creacion = models.DateTimeField(auto_now_add=True)
     class Meta:
-
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
         verbose_name = 'Actividad'
         verbose_name_plural = 'Actividades'
 
@@ -45,9 +45,10 @@ class ControlsModel(ActivitiesModel):
     check = models.BooleanField(default = False)
     corrected = models.BooleanField(default = False)
     managed = models.BooleanField(default = False)
-    category_activity = models.ForeignKey(ActivitiesModel, on_delete=models.CASCADE, verbose_name='Categoria de Actividad', null=True)
+    category_activity = models.ForeignKey(ActivitiesModel, on_delete=models.CASCADE, verbose_name='Categoria de Actividad', null=True) # default=1
 
     class Meta:
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
         verbose_name = 'ControlsModel'
         verbose_name_plural = 'ControlsModels'
 
@@ -67,6 +68,7 @@ class RisksModel(ActivitiesModel):
     category_activity = models.ForeignKey(ActivitiesModel, on_delete=models.CASCADE, verbose_name='Categoria de Actividad', null=True)
 
     class Meta:
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
         verbose_name = 'RisksModel'
         verbose_name_plural = 'RisksModels'
 
@@ -77,7 +79,7 @@ class RisksModel(ActivitiesModel):
 # 4.4 ThreatsModel
 class ThreatsModel(ActivitiesModel):
 
-    title = models.CharField('Titulo del Control', max_length=50)
+    title = models.CharField('Titulo del Amenaza', max_length=50)
     notes = models.CharField('Notas', max_length=200)
     imageUpload = models.ImageField('Imagen Adjunta', upload_to='activities/', blank=True, null=True)
     check = models.BooleanField(default = False)
@@ -86,6 +88,7 @@ class ThreatsModel(ActivitiesModel):
     category_activity = models.ForeignKey(ActivitiesModel, on_delete=models.CASCADE, verbose_name='Categoria de Actividad', null=True)
 
     class Meta:
+        ordering = ['-id']                                                                              # Orden descendente o ascendente              
         verbose_name = 'ThreatsModel'
         verbose_name_plural = 'ThreatsModels'
 
@@ -96,7 +99,7 @@ class ThreatsModel(ActivitiesModel):
 # 4.5 ResultsModel
 class ResultsModel(ActivitiesModel):
 
-    title = models.CharField('Titulo del Control', max_length=50)
+    title = models.CharField('Titulo del Resultado', max_length=50)
     notes = models.CharField('Notas', max_length=200)
     imageUpload = models.ImageField('Imagen Adjunta', upload_to='activities/', blank=True, null=True)
     check = models.BooleanField(default = False)
@@ -105,6 +108,7 @@ class ResultsModel(ActivitiesModel):
     category_activity = models.ForeignKey(ActivitiesModel, on_delete=models.CASCADE, verbose_name='Categoria de Actividad', null=True)
 
     class Meta:
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
         verbose_name = 'ResultsModel'
         verbose_name_plural = 'ResultsModels'
 

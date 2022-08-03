@@ -1,3 +1,4 @@
+from email import charset
 from django.db import models
 from apps.base.models import BaseModel
 
@@ -12,11 +13,13 @@ from apps.base.models import BaseModel
 # 7.1 StandardsModel
 class StandardsModel(BaseModel):
 
-    
+    title_standard = models.CharField('Titulo de la Documentacion', max_length=50)
+    version_standard = models.DecimalField('Version', max_digits=5, decimal_places=2)
 
     class Meta:
-        verbose_name = _("StandardsModel")
-        verbose_name_plural = _("StandardsModels")
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
+        verbose_name = 'StandardsModel'
+        verbose_name_plural = 'StandardsModels'
 
     def __str__(self):
         return self.name
@@ -24,12 +27,17 @@ class StandardsModel(BaseModel):
 
 
 # 7.2 ChaptersModel
-class ChaptersModel(BaseModel):
+class ChaptersModel(StandardsModel):
 
-    
+    title_chapter = models.CharField('Titulo del Capitulo', max_length=50)
+    description_chapter = models.CharField('Descripcion', max_length=200)
+    image_chapter = models.ImageField('Imagen', upload_to='standards/', blank=True, null=True)
+    link_chapter = models.CharField(max_length=100, default='', null=True, blank=True)
+
     class Meta:
-        verbose_name = _("ChaptersModel")
-        verbose_name_plural = _("ChaptersModels")
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
+        verbose_name = 'ChaptersModel'
+        verbose_name_plural = 'ChaptersModels'
 
     def __str__(self):
         return self.name
@@ -37,13 +45,17 @@ class ChaptersModel(BaseModel):
 
 
 # 7.3 ArticlesModel
-class ArticlesModel(BaseModel):
+class ArticlesModel(ChaptersModel):
 
-    
+    title_article = models.CharField('Titulo del Capitulo', max_length=50)
+    description_article = models.CharField('Descripcion', max_length=200)
+    image_article = models.ImageField('Imagen', upload_to='standards/', blank=True, null=True)
+    link_article = models.CharField(max_length=100, default='', null=True, blank=True)
 
     class Meta:
-        verbose_name = _("ArticlesModel")
-        verbose_name_plural = _("ArticlesModels")
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
+        verbose_name = 'ArticlesModel'
+        verbose_name_plural = 'ArticlesModels'
 
     def __str__(self):
         return self.name

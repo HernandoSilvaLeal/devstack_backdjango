@@ -1,3 +1,8 @@
+Revisar el tema de subir imagenes
+falta analizar los campos requeridos
+data de prueba
+
+
 django-admin startproject swdevstackcore
 
 django-admin startapp activities
@@ -205,14 +210,11 @@ router.register('', UserViewSet, basename="users")
 django-admin startapp base
 Creacion de utils, models, apps, y api en la aplicacion base, base de los demas modelos
 
-=> CREACION DE LOS MODELOS
+=> Creacion de los modelos de las aplicaciones
 
+=> Creacion de las carpetas para las iamgenes
 
-
-
-
-
-
+=> Registro de las aplicaciones en el archivo settings.py --> base.py
 
 pip install django-simple-history
 simple_history.middleware.HistoryRequestMiddleware
