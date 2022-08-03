@@ -1,21 +1,70 @@
 django-admin startproject swdevstackcore
 
-django-admin startapp users
-django-admin startapp projects
-django-admin startapp assets
 django-admin startapp activities
+django-admin startapp assets
 django-admin startapp metrics
+django-admin startapp projects
 django-admin startapp resources
 django-admin startapp standards
 django-admin startapp users
 
-users
-projects
-assets
 activities
+assets
 metrics
+projects
 resources
 standards
+users
+
+activities
+router.register(r'activities', ActivitiesViewSet, basename = 'activities')
+router.register(r'controls', ControlsViewSet, basename = 'controls')
+router.register(r'risks', RisksViewSet, basename = 'risks')
+router.register(r'threats', ThreatsViewSet, basename = 'threats')
+router.register(r'results', ResultsViewSet, basename = 'results')
+
+assets
+router.register(r'assets', AssetsViewSet, basename = 'assets')
+router.register(r'physicalassets', PhysicalassetsViewSet, basename = 'physicalassets')
+router.register(r'informationassets', InformationassetsViewSet, basename = 'informationassets')
+router.register(r'serviceassets', ServiceassetsViewSet, basename = 'serviceassets')
+router.register(r'personalassets', PersonalassetsViewSet, basename = 'personalassets')
+
+metrics
+router.register(r'progressreport', ProgressreportViewSet, basename = 'progressreport')
+router.register(r'indicators', IndicatorsViewSet, basename = 'indicators')
+router.register(r'calendar', CalendarViewSet, basename = 'calendar')
+
+projects
+router.register(r'projects', ProjectsViewSet, basename = 'projects')
+router.register(r'companies', CompaniesViewSet, basename = 'companies')
+router.register(r'stages', StagesViewSet, basename = 'stages')
+router.register(r'areas', AreasViewSet, basename = 'areas')
+
+resources
+router.register(r'helps', HelpsViewSet, basename = 'helps')
+router.register(r'resourcecategory', ResourcecategoryViewSet, basename = 'resourcecategory')
+router.register(r'resources', ResourcesViewSet, basename = 'resources')
+
+standards
+router.register(r'standards', HelpsViewSet, basename = 'helps')
+router.register(r'chapters', chaptersViewSet, basename = 'chapters')
+router.register(r'articles', ArticlesViewSet, basename = 'articles')
+
+users
+router.register('', UserViewSet, basename="users")
+
+django-admin startapp base
+Creacion de utils, models, apps, y api en la aplicacion base, base de los demas modelos
+
+
+
+
+
+
+
+
+
 
 pip install django-simple-history
 simple_history.middleware.HistoryRequestMiddleware

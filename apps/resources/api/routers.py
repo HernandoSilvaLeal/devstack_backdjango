@@ -7,6 +7,9 @@ from apps.users.api.views import UserViewSet            # Importa las vistas loc
 router = DefaultRouter()                                # Carga la variable principal de enrutamiento
 
                                                         # Zona XXXXXXX del arbol de enrutamiento (endpoint disponibilizado)
-router.register('', UserViewSet, basename="users")      
+router.register(r'helps', HelpsViewSet, basename = 'helps')
+router.register(r'resourcecategory', ResourcecategoryViewSet, basename = 'resourcecategory')
+router.register(r'resources', ResourcesViewSet, basename = 'resources')
+
 
 urlpatterns = router.urls                               # Iguala las ramificaciones normales de urlpatters a la ramificacion tipo router
