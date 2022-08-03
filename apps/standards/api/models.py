@@ -25,7 +25,6 @@ class StandardsModel(BaseModel):
         return self.name
 
 
-
 # 7.2 ChaptersModel
 class ChaptersModel(StandardsModel):
 
@@ -41,7 +40,6 @@ class ChaptersModel(StandardsModel):
 
     def __str__(self):
         return self.name
-
 
 
 # 7.3 ArticlesModel

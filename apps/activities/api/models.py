@@ -27,6 +27,7 @@ class ActivitiesModel(BaseModel):
     description = models.TextField("Descripcion General", max_length=200, blank=False, null=False)
     area = models.ForeignKey(AreasModel, verbose_name="Area de la Empresa", on_delete=models.CASCADE)
     Creacion = models.DateTimeField(auto_now_add=True)
+    
     class Meta:
         ordering = ['-id']                                                                              # Orden descendente o ascendente        
         verbose_name = 'Actividad'
