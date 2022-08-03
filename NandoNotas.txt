@@ -16,12 +16,46 @@ resources
 standards
 users
 
+=> ModelActivities
+
+
+
+################################################################################ (1)
+################################################################################
+################################################################################ activities 
+
 activities
 router.register(r'activities', ActivitiesViewSet, basename = 'activities')
 router.register(r'controls', ControlsViewSet, basename = 'controls')
 router.register(r'risks', RisksViewSet, basename = 'risks')
 router.register(r'threats', ThreatsViewSet, basename = 'threats')
 router.register(r'results', ResultsViewSet, basename = 'results')
+
+Activities
+Controls
+Risks
+Threats
+Results
+
+-----------> MODELOS activities
+
+ActivitiesModel
+ControlsModel
+RisksModel
+ThreatsModel
+ResultsModel
+
+---------------------> Serializadores activities
+
+ActivitiesSerializer
+ControlsSerializer
+RisksSerializer
+ThreatsSerializer
+ResultsSerializer
+
+################################################################################ (2)
+################################################################################
+################################################################################ assets
 
 assets
 router.register(r'assets', AssetsViewSet, basename = 'assets')
@@ -30,10 +64,57 @@ router.register(r'informationassets', InformationassetsViewSet, basename = 'info
 router.register(r'serviceassets', ServiceassetsViewSet, basename = 'serviceassets')
 router.register(r'personalassets', PersonalassetsViewSet, basename = 'personalassets')
 
-metrics
+AssetsSerializer
+PhysicalassetsSerializer
+InformationassetsSerializer
+ServiceassetsSerializer
+PersonalassetsSerializer
+
+-----------> MODELOS assets
+
+AssetsModel
+PhysicalassetsModel
+InformationassetsModel
+ServiceassetsModel
+PersonalassetsModel
+
+---------------------> Serializadores assets
+
+AssetsSerializer
+PhysicalassetsSerializer
+InformationassetsSerializer
+ServiceassetsSerializer
+PersonalassetsSerializer
+
+################################################################################ (3)
+################################################################################
+################################################################################ metrics
+
+
 router.register(r'progressreport', ProgressreportViewSet, basename = 'progressreport')
 router.register(r'indicators', IndicatorsViewSet, basename = 'indicators')
 router.register(r'calendar', CalendarViewSet, basename = 'calendar')
+
+
+Progressreport
+Indicators
+Calendar
+
+-----------> MODELOS metrics
+
+ProgressreportModel
+IndicatorsModel
+CalendarModel
+
+---------------------> Serializadores metrics
+
+ProgressreportSerializer
+IndicatorsSerializer
+CalendarSerializer
+
+################################################################################  (4)
+################################################################################
+################################################################################ projects
 
 projects
 router.register(r'projects', ProjectsViewSet, basename = 'projects')
@@ -41,23 +122,90 @@ router.register(r'companies', CompaniesViewSet, basename = 'companies')
 router.register(r'stages', StagesViewSet, basename = 'stages')
 router.register(r'areas', AreasViewSet, basename = 'areas')
 
+Projects
+Companies
+Stages
+Areas
+
+-----------> MODELOS projects
+
+ProjectsModel
+CompaniesModel
+StagesModel
+AreasModel
+
+---------------------> Serializadores projects
+
+ProjectsSerializer
+CompaniesSerializer
+StagesSerializer
+AreasSerializer
+
+################################################################################  (5)
+################################################################################
+################################################################################ resources
+
 resources
 router.register(r'helps', HelpsViewSet, basename = 'helps')
 router.register(r'resourcecategory', ResourcecategoryViewSet, basename = 'resourcecategory')
 router.register(r'resources', ResourcesViewSet, basename = 'resources')
 
-standards
-router.register(r'standards', HelpsViewSet, basename = 'helps')
-router.register(r'chapters', chaptersViewSet, basename = 'chapters')
+Helps
+Resourcecategory
+Resources
+
+-----------> MODELOS resources
+
+HelpsModel
+ResourcecategoryModel
+ResourcesModel
+
+---------------------> Serializadores resources
+
+HelpsSerializer
+ResourcecategorySerializer
+ResourcesSerializer
+
+################################################################################  (6)
+################################################################################
+################################################################################ standards
+
+
+router.register(r'standards', StandardsViewSet, basename = 'helps')
+router.register(r'chapters', ChaptersViewSet, basename = 'chapters')
 router.register(r'articles', ArticlesViewSet, basename = 'articles')
+
+Standards
+Chapters
+Articles
+
+-----------> MODELOS standards
+
+StandardsModel
+ChaptersModel
+ArticlesModel
+
+---------------------> Serializadores standards
+
+StandardsSerializer
+ChaptersSerializer
+ArticlesSerializer
+
+################################################################################  (7)
+################################################################################
+################################################################################ users
 
 users
 router.register('', UserViewSet, basename="users")
 
+################################################################################
+################################################################################
+################################################################################
+
 django-admin startapp base
 Creacion de utils, models, apps, y api en la aplicacion base, base de los demas modelos
 
-
+=> CREACION DE LOS MODELOS
 
 
 
