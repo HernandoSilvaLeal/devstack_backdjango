@@ -16,8 +16,8 @@ class StandardsModel(BaseModel):
 
     class Meta:
         ordering = ['-id']                                                                              # Orden descendente o ascendente        
-        verbose_name = _("StandardsModel")
-        verbose_name_plural = _("StandardsModels")
+        verbose_name = 'StandardsModel'
+        verbose_name_plural = 'StandardsModels'
 
     def __str__(self):
         return self.name
@@ -30,8 +30,8 @@ class ChaptersModel(BaseModel):
     
     class Meta:
         ordering = ['-id']                                                                              # Orden descendente o ascendente        
-        verbose_name = _("ChaptersModel")
-        verbose_name_plural = _("ChaptersModels")
+        verbose_name = 'ChaptersModel'
+        verbose_name_plural = 'ChaptersModels'
 
     def __str__(self):
         return self.name
@@ -45,8 +45,8 @@ class ArticlesModel(BaseModel):
 
     class Meta:
         ordering = ['-id']                                                                              # Orden descendente o ascendente        
-        verbose_name = _("ArticlesModel")
-        verbose_name_plural = _("ArticlesModels")
+        verbose_name = 'ArticlesModel'
+        verbose_name_plural = 'ArticlesModels'
 
     def __str__(self):
         return self.name

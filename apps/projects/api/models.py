@@ -88,7 +88,7 @@ class StagesModel(BaseModel):
 
 
 # 2.4 AreasModel
-class AreasModel(BaseModel):
+class AreasModel(CompaniesModel):
 
     name_area = models.CharField('Nombre del Area', max_length=50)
     leader = models.ForeignKey(ProjectsModel.leaderproject, verbose_name=_(""), on_delete=models.CASCADE)

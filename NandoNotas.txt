@@ -1,4 +1,7 @@
 Revisar el tema de subir imagenes
+falta analizar los campos requeridos
+data de prueba
+
 
 django-admin startproject swdevstackcore
 
