@@ -15,6 +15,7 @@ class StandardsModel(BaseModel):
     
 
     class Meta:
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
         verbose_name = _("StandardsModel")
         verbose_name_plural = _("StandardsModels")
 
@@ -28,6 +29,7 @@ class ChaptersModel(BaseModel):
 
     
     class Meta:
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
         verbose_name = _("ChaptersModel")
         verbose_name_plural = _("ChaptersModels")
 
@@ -42,6 +44,7 @@ class ArticlesModel(BaseModel):
     
 
     class Meta:
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
         verbose_name = _("ArticlesModel")
         verbose_name_plural = _("ArticlesModels")
 

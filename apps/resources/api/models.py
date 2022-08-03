@@ -15,6 +15,7 @@ class HelpsModel(BaseModel):
     
 
     class Meta:
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
         verbose_name = _("HelpsModel")
         verbose_name_plural = _("HelpsModels")
 
@@ -28,6 +29,7 @@ class ResourcecategoryModel(BaseModel):
     
 
     class Meta:
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
         verbose_name = _("ResourcecategoryModel")
         verbose_name_plural = _("ResourcecategoryModels")
 
@@ -41,6 +43,7 @@ class ResourcesModel(BaseModel):
     
 
     class Meta:
+        ordering = ['-id']                                                                              # Orden descendente o ascendente        
         verbose_name = _("ResourcesModel")
         verbose_name_plural = _("ResourcesModels")
 

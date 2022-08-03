@@ -13,10 +13,10 @@ from apps.projects.api.models import ProjectsModel, CompaniesModel
 # 5.1 ProgressreportModel
 class ProgressreportModel(BaseModel):
 
-    project = models.ForeignKey(ProjectsModel, verbose_name=_(""), on_delete=models.CASCADE)
-    company = models.ForeignKey(CompaniesModel, verbose_name=_(""), on_delete=models.CASCADE)
-    dateinitial = models.DateField('Fecha Inicio de Proyecto', auto_now=False, auto_now_add=False) # Revisar relacion foranea a un campo especifico.
-    datecompletion = models.DateField('Fecha Inicio de Proyecto', auto_now=False, auto_now_add=False) # Revisar relacion foranea a un campo especifico.
+    project = models.ForeignKey(ProjectsModel, verbose_name=("Project Name"), on_delete=models.CASCADE)
+    company = models.ForeignKey(CompaniesModel, verbose_name=("Company Name"), on_delete=models.CASCADE)
+    dateinitial = models.DateField(ProjectsModel.dateinitial, auto_now=False, auto_now_add=False) # Revisar relacion foranea a un campo especifico modelo projects
+    datecompletion = models.DateField(ProjectsModel.datecompletion, auto_now=False, auto_now_add=False) # Revisar relacion foranea a un campo especifico modelo projects
     adminproject = models.CharField('Responsable', max_length=50) # Revisar construccion de relacion con users
     auditorproject =  models.CharField('Responsable', max_length=50) # Revisar construccion de relacion con users
     leaderproject =  models.CharField('Responsable', max_length=50) # Revisar construccion de relacion con users
@@ -56,6 +56,7 @@ class IndicatorsModel(ProgressreportModel):
 # 5.3 CalendarModel
 class CalendarModel(BaseModel):
 
+    name_calendar = models.CharField('Nombre del Calendario', max_length=50)
     date_dalivery_stage_1 = models.DateField('Fecha Entrega Etapa 1', auto_now=False, auto_now_add=True)
     date_dalivery_stage_2 = models.DateField('Fecha Entrega Etapa 2', auto_now=False, auto_now_add=True)
     date_dalivery_stage_3 = models.DateField('Fecha Entrega Etapa 3', auto_now=False, auto_now_add=True)
