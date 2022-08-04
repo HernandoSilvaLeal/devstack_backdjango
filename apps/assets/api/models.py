@@ -14,6 +14,7 @@ from apps.projects.api.models import CompaniesModel
 class AssetsModel(BaseModel):
 
     options_type = (
+        ('ninguna', 'Ninguna'),
         ('fisico', 'Fisico'),
         ('informatico', 'Informatico'),
         ('servicio', 'Servicio'),
@@ -21,19 +22,20 @@ class AssetsModel(BaseModel):
     )
     
     options_substate = (
+        ('ninguna', 'Ninguna'),
         ('fisico', 'Fisico'),
         ('informatico', 'Informatico'),
         ('servicio', 'Servicio'),
         ('personal', 'Personal'),
     )
     name = models.CharField("Nombre del Activo", max_length=50, unique=True, blank=False, null=False)
-    type = models.CharField('Tipo del Activo', max_length=20, choices=options_type, default='Ninguna')
+    type = models.CharField('Tipo del Activo', max_length=20, choices=options_type, default=1)
     appraisal = models.DecimalField('Avaluo', max_digits=5, decimal_places=2)
     description = models.TextField("Descripcion General", max_length=200, blank=False, null=False)
     company = models.ForeignKey(CompaniesModel, verbose_name="Empresa", on_delete=models.CASCADE)
     location = models.CharField("Nombre del Activo", max_length=50, unique=True, blank=False, null=False)
-    substate = models.CharField('Tipo del Activo', max_length=20, choices=options_substate, default='Ninguna')
-    Creacion = models.DateTimeField(auto_now_add=True)
+    substate = models.CharField('Tipo del Activo', max_length=20, choices=options_substate, default=1)
+    Creacion = models.DateTimeField(auto_now_add=False)
     class Meta:
         ordering = ['-id']                                                                              # Orden descendente o ascendente        
         verbose_name = "AssetsModel"

@@ -22,11 +22,11 @@ class ActivitiesModel(BaseModel):
     )
     
     name_activity = models.CharField("Nombre de la Actividad", max_length=50, unique=True, blank=False, null=False)
-    type_act = models.CharField('Tipo de Actividad', max_length=20, choices=options, default='Ninguna')
+    type_act = models.CharField('Tipo de Actividad', max_length=20, choices=options, default=1)
     referenceISO = models.CharField("Referencia a la Norma", max_length=50)
     description = models.TextField("Descripcion General", max_length=200, blank=False, null=False)
     area = models.ForeignKey(AreasModel, verbose_name="Area de la Empresa", on_delete=models.CASCADE)
-    creacion = models.DateTimeField(auto_now_add=True)
+    creacion = models.DateTimeField(auto_now_add=False)
     
     class Meta:
         ordering = ['-id']                                                                              # Orden descendente o ascendente        
@@ -38,7 +38,7 @@ class ActivitiesModel(BaseModel):
 
 
 # 4.2 ControlsModel
-class ControlsModel(models.Model):
+class ControlsModel(BaseModel):
 
     title = models.CharField('Titulo del Control', max_length=50)
     notes = models.CharField('Notas', max_length=200)
@@ -58,7 +58,7 @@ class ControlsModel(models.Model):
 
 
 # 4.3 RisksModel
-class RisksModel(models.Model):
+class RisksModel(BaseModel):
 
     title = models.CharField('Titulo del Riesgo', max_length=50)
     notes_risk = models.CharField('Notas', max_length=200)
@@ -78,7 +78,7 @@ class RisksModel(models.Model):
 
 
 # 4.4 ThreatsModel
-class ThreatsModel(models.Model):
+class ThreatsModel(BaseModel):
 
     title = models.CharField('Titulo del Amenaza', max_length=50)
     notes_thr = models.CharField('Notas', max_length=200)
@@ -98,7 +98,7 @@ class ThreatsModel(models.Model):
 
 
 # 4.5 ResultsModel
-class ResultsModel(models.Model):
+class ResultsModel(BaseModel):
 
     title = models.CharField('Titulo del Resultado', max_length=50)
     notes = models.CharField('Notas', max_length=200)

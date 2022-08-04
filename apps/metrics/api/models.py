@@ -56,18 +56,18 @@ class IndicatorsModel(ProgressreportModel):
 class CalendarModel(BaseModel):
 
     name_calendar = models.CharField('Nombre del Calendario', max_length=50)
-    date_delivery_stage_1 = models.DateField('Fecha Entrega Etapa 1', auto_now=False, auto_now_add=True)
-    date_delivery_stage_2 = models.DateField('Fecha Entrega Etapa 2', auto_now=False, auto_now_add=True)
-    date_delivery_stage_3 = models.DateField('Fecha Entrega Etapa 3', auto_now=False, auto_now_add=True)
-    date_delivery_stage_4 = models.DateField('Fecha Entrega Etapa 4', auto_now=False, auto_now_add=True)
-    date_delivery_stage_5 = models.DateField('Fecha Entrega Etapa 5', auto_now=False, auto_now_add=True)
-    date_delivery_stage_6 = models.DateField('Fecha Entrega Etapa 6', auto_now=False, auto_now_add=True)
-    date_delivery_stage_7 = models.DateField('Fecha Entrega Etapa 7', auto_now=False, auto_now_add=True)
-    date_delivery_stage_8 = models.DateField('Fecha Entrega Etapa 8', auto_now=False, auto_now_add=True)
-    date_delivery_stage_9 = models.DateField('Fecha Entrega Etapa 9', auto_now=False, auto_now_add=True)
-    date_delivery_stage_10 = models.DateField('Fecha Entrega Etapa 10', auto_now=False, auto_now_add=True)
-    date_delivery_stage_11 = models.DateField('Fecha Entrega Etapa 11', auto_now=False, auto_now_add=True)
-    date_delivery_stage_12 = models.DateField('Fecha Entrega Etapa 11', auto_now=False, auto_now_add=True)
+    date_delivery_stage_1 = models.DateField('Fecha Entrega Etapa 1', auto_now=False, auto_now_add=False)
+    date_delivery_stage_2 = models.DateField('Fecha Entrega Etapa 2', auto_now=False, auto_now_add=False)
+    date_delivery_stage_3 = models.DateField('Fecha Entrega Etapa 3', auto_now=False, auto_now_add=False)
+    date_delivery_stage_4 = models.DateField('Fecha Entrega Etapa 4', auto_now=False, auto_now_add=False)
+    date_delivery_stage_5 = models.DateField('Fecha Entrega Etapa 5', auto_now=False, auto_now_add=False)
+    date_delivery_stage_6 = models.DateField('Fecha Entrega Etapa 6', auto_now=False, auto_now_add=False)
+    date_delivery_stage_7 = models.DateField('Fecha Entrega Etapa 7', auto_now=False, auto_now_add=False)
+    date_delivery_stage_8 = models.DateField('Fecha Entrega Etapa 8', auto_now=False, auto_now_add=False)
+    date_delivery_stage_9 = models.DateField('Fecha Entrega Etapa 9', auto_now=False, auto_now_add=False)
+    date_delivery_stage_10 = models.DateField('Fecha Entrega Etapa 10', auto_now=False, auto_now_add=False)
+    date_delivery_stage_11 = models.DateField('Fecha Entrega Etapa 11', auto_now=False, auto_now_add=False)
+    date_delivery_stage_12 = models.DateField('Fecha Entrega Etapa 11', auto_now=False, auto_now_add=False)
 
     class Meta:
         ordering = ['-id']                                                                              # Orden descendente o ascendente        

@@ -29,6 +29,7 @@ class HelpsModel(BaseModel):
 class ResourcecategoryModel(HelpsModel):
 
     options = (
+        ('ninguna', 'Ninguna'),
         ('link', 'Link'),
         ('video', 'Video'),
         ('imagen', 'Imagen'),
@@ -36,7 +37,7 @@ class ResourcecategoryModel(HelpsModel):
         ('adjunto', 'Adjunto'),
     )
 
-    cateogry = models.CharField('Categoria de Recursos', choices=options, max_length=50, default = 'Ninguna')
+    cateogry = models.CharField('Categoria de Recursos', choices=options, max_length=50, default = 1)
 
     class Meta:
         ordering = ['-id']                                                                              # Orden descendente o ascendente        

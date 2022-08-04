@@ -75,8 +75,8 @@ class StagesModel(BaseModel):
 
     comercial_name = models.CharField('Nombre de la Etapa', max_length=50)
     number_stage = models.IntegerField('Cantidad de Etapas', choices=options, default = 1)
-    type = models.CharField('Tipo de Actividad', max_length=20, choices=options, default='Ninguna')
-    date_dalivery_stage = models.DateField('Fecha Entrega Etapa 1', auto_now=False, auto_now_add=True)
+    type = models.CharField('Tipo de Etapa', max_length=20, default=1)
+    date_dalivery_stage = models.DateField('Fecha Entrega Etapa 1', auto_now=False, auto_now_add=False)
 
     class Meta:
         ordering = ['-id']                                                                              # Orden descendente o ascendente        
