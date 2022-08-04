@@ -12,8 +12,6 @@ from apps.users.api.serializers import (
 )
 from apps.users.models import User
 
-
-
 class Login(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 

@@ -43,6 +43,8 @@ Threats
 Results
 
 -----------> MODELOS activities
+---------------------> Serializadores activities
+-------------------------------------> Vistas activities
 
 ActivitiesModel
 ControlsModel
@@ -50,13 +52,17 @@ RisksModel
 ThreatsModel
 ResultsModel
 
----------------------> Serializadores activities
-
 ActivitiesSerializer
 ControlsSerializer
 RisksSerializer
 ThreatsSerializer
 ResultsSerializer
+
+ActivitiesViewSet
+ControlsViewSet
+RisksViewSet
+ThreatsViewSet
+ResultsViewSet
 
 ################################################################################ (2)
 ################################################################################
@@ -76,6 +82,8 @@ Serviceassets
 Personalassets
 
 -----------> MODELOS assets
+---------------------> Serializadores assets
+-------------------------------------> Vistas assets
 
 AssetsModel
 PhysicalassetsModel
@@ -83,13 +91,17 @@ InformationassetsModel
 ServiceassetsModel
 PersonalassetsModel
 
----------------------> Serializadores assets
-
 AssetsSerializer
 PhysicalassetsSerializer
 InformationassetsSerializer
 ServiceassetsSerializer
 PersonalassetsSerializer
+
+AssetsViewSet
+PhysicalassetsViewSet
+InformationassetsViewSet
+ServiceassetsViewSet
+PersonalassetsViewSet
 
 ################################################################################ (3)
 ################################################################################
@@ -106,16 +118,20 @@ Indicators
 Calendar
 
 -----------> MODELOS metrics
+---------------------> Serializadores metrics
+-------------------------------------> Vistas metrics
 
 ProgressreportModel
 IndicatorsModel
 CalendarModel
 
----------------------> Serializadores metrics
-
 ProgressreportSerializer
 IndicatorsSerializer
 CalendarSerializer
+
+ProgressreportViewSet
+IndicatorsViewSet
+CalendarViewSet
 
 ################################################################################  (4)
 ################################################################################
@@ -133,18 +149,23 @@ Stages
 Areas
 
 -----------> MODELOS projects
+---------------------> Serializadores projects
+-------------------------------------> Vistas projects
 
 ProjectsModel
 CompaniesModel
 StagesModel
 AreasModel
 
----------------------> Serializadores projects
-
 ProjectsSerializer
 CompaniesSerializer
 StagesSerializer
 AreasSerializer
+
+ProjectsViewSet
+CompaniesViewSet
+StagesViewSet
+AreasViewSet
 
 ################################################################################  (5)
 ################################################################################
@@ -160,16 +181,20 @@ Resourcecategory
 Resources
 
 -----------> MODELOS resources
+---------------------> Serializadores resources
+-------------------------------------> Vistas resources
 
 HelpsModel
 ResourcecategoryModel
 ResourcesModel
 
----------------------> Serializadores resources
-
 HelpsSerializer
 ResourcecategorySerializer
 ResourcesSerializer
+
+HelpsViewSet
+ResourcecategoryViewSet
+ResourcesViewSet
 
 ################################################################################  (6)
 ################################################################################
@@ -185,16 +210,20 @@ Chapters
 Articles
 
 -----------> MODELOS standards
+---------------------> Serializadores standards
+-------------------------------------> Vistas standards
 
 StandardsModel
 ChaptersModel
 ArticlesModel
 
----------------------> Serializadores standards
-
 StandardsSerializer
 ChaptersSerializer
 ArticlesSerializer
+
+StandardsViewSet
+ChaptersViewSet
+ArticlesViewSet
 
 ################################################################################  (7)
 ################################################################################

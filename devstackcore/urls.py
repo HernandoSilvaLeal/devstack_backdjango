@@ -1,30 +1,35 @@
-from django.contrib import admin                        # Import nativo del admin de django que disponibiliza tipos de campos
-from django.urls import path, include, re_path          # Import nativo los path de las url, el repath es para ejecir entre rutas y el include para ramificar el programa.
-from django.conf import settings                        # Import nativo de settings para poder leer y cargar las configuraciones de django con las variables de base.py
+# Imports nativos para disponibilizar tipos de campos
+from django.contrib import admin                        
+from django.urls import path, include, re_path
+from django.conf import settings             
 from django.views.static import serve
 
-from drf_yasg.views import get_schema_view              # Import de terceros necesaria para que funcione documentacion de swagger
-from drf_yasg import openapi                            # Import de terceros necesaria para que funcione documentacion de swagger
+# Imports de terceros (SWAGGER) para documentacion
+from rest_framework import permissions                  
+from drf_yasg.views import get_schema_view              
+from drf_yasg import openapi
 
-from rest_framework import permissions                  # Import de terceros necesario para que funcione permisos y tokens jwt
-from rest_framework_simplejwt.views import (            # Import de terceros necesario para que funcione permisos y tokens jwt, el normal y el refresh
+# Imports de terceros (JWT) para permisos y tokens
+from rest_framework_simplejwt.views import (            
     TokenObtainPairView,
     TokenRefreshView,
 )
 
-from apps.users.views import Login,Logout               # Import local de CLASES para disponibilizar el Login y Logout
+# Imports local de CLASES para Login y Logout
+from apps.users.views import Login,Logout               
 
-schema_view = get_schema_view(                          # Parametros de configuracion en cabecera swagger documentacion
+# Configuracion en cabecera Swagger docs
+schema_view = get_schema_view(
    openapi.Info(
-      title="Documentación de API",
-      default_version='v0.1',
-      description="Documentación pública de API de Ecommerce",
+      title="Documentacion de API DevStack Backend",
+      default_version='v1',
+      description="Esta es la documentacion de api para el proyecto Sena ADSI DevStack, en el backend ",
       terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="developerpeperu@gmail.com"),
-      license=openapi.License(name="BSD License"),
+      contact=openapi.Contact(email="devstackproject@gmail.com"),
+      license=openapi.License(name="Proyecto Licenciado por Sena Rionegro"),
    ),
    public=True,
-   permission_classes=(permissions.AllowAny,),
+   permission_classes=[permissions.AllowAny],
 )
 
 # Arbol de enrutamiendo de endpoints

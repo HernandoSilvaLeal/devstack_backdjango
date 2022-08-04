@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 # Import locales para disponibilizar las vistas
 
 # Importa las vistas locales de la app
-from apps.standards.api.views import UserViewSet            
+from apps.standards.api.views import StandardsViewSet, ChaptersViewSet, ArticlesViewSet      
 
 # Carga la variable principal de enrutamiento
 router = DefaultRouter()
