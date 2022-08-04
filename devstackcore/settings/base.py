@@ -28,14 +28,14 @@ BASE_APPS = [
 ]
 
 LOCAL_APPS = [
-    # 'apps.base',
-    # 'apps.users',
-    # 'apps.projects',
-    # 'apps.assets',
-    # 'apps.activities',
-    # 'apps.metrics',
-    # 'apps.resources',
-    # 'apps.standards',
+    'apps.activities',
+    'apps.assets',
+    'apps.base',
+    'apps.metrics',
+    'apps.standards',
+    'apps.resources',
+    'apps.projects',
+    'apps.users',
 ]
 
 
@@ -132,7 +132,8 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.User' 
+# Error de conflicto solucionado = https://stackoverflow.com/questions/43871604/valueerror-dependency-on-app-with-no-migrations-customuser 
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8000",
@@ -165,3 +166,33 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+
+# Error RuntimeError: Conflicting 'historicalareasmodel' models in application 'projects': <class 'apps.projects.api.models.HistoricalAreasModel'> and <class 'apps.projects.admin.HistoricalAreasModel'>.
+# https://stackoverflow.com/questions/39574665/django-oscar-runtimeerror-conflicting-models
+# El error era que las clases tenian el mismo nombre y generaban un error en tiempo de ejecucion ---> <class AreasAdmin(models.AreasModel):> -----> <class AreasModel(CompaniesModel):>
+
+# Error en una relacion circular entre el atriburto de la clase y el atributo del campo, la solucion fue cambiar la base del modelo, lo resolvi analizando la construccion del modelo y leyendo el error varias vecces en español
+# En models de projects---> class AreasModel(CompaniesModel): --->  company = models.ForeignKey(CompaniesModel, verbose_name="Empresa", on_delete=models.CASCADE) ---> solucion 
+
+# System check identified 16 issues (0 silenced).
+# ←[31;1mactivities.ControlsAdmin: (models.E020) The 'ControlsAdmin.check()' class method is currently overridden by <django.db.models.query_utils.DeferredAttribute object at 0x0000018B11632110>.←[0m
+
+# AttributeError: module 'django.contrib.admin' has no attribute 'AssetsModel'
+# El error es que estaba llamando al modelo erradamente como class AssetsAdmin(admin.AssetsModel): cuando lo correcto es ---> 
+
+# ←[31;1massets.InformationassetsAdmin: (models.E020) The 'InformationassetsAdmin.check()' class method is currently overridden by <django.db.models.query_utils.DeferredAttribute object at 0x0000024398774BB0>.←[0m 
+# La solucion al error es no usar palabras reservadas porque el intgerprete de django cofunde las definiciones por eso indica que las funciones se sobreescriben.
+
+# ←[31;1massets.InformationassetsModel.category_assets: (fields.E305) Reverse query name for 'assets.InformationassetsModel.category_assets' clashes with reverse query name for 'assets.InformationassetsModel.assetsmodel_ptr'.
+# HINT: Add or change a related_name argument to the definition for 'assets.InformationassetsModel.category_assets' or 'assets.InformationassetsModel.assetsmodel_ptr'.←[0m
+# El error significa que hay una relacion circular, se basa en un modelo que tambien se llama como foraneo, la solucion es quitar el campo o cambiar la base de modelo en el atributo de la clase
+
+# AttributeError: module 'django.contrib.admin' has no attribute 'ProgressreportModel' en e "C:\_devprog\Project\devstack_backdjango_python\apps\metrics\admin.py", line 12, in <module> class ProgressreportAdmin(admin.ProgressreportModel):
+# El error es que la importacion esta mal referenciada, se esta utilizando la palabra admin y no model
+
+
+
+
+
+
+
