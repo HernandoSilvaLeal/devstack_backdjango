@@ -13,17 +13,97 @@ django-admin startapp resources
 django-admin startapp standards
 django-admin startapp users
 
+
 activities
+------------> api
 assets
+------------> Login
+------------> Logout
 metrics
 projects
 resources
 standards
 users
 
-=> ModelActivities
 
+django-admin startproject devstackcore . 
+    settings
+        base
+        local
+        production
+    aswg
+    yyyy
+    rrrr
 
+django-admin startapp users
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test
+
+django-admin startapp projects
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test
+
+django-admin startapp assets
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test
+
+django-admin startapp activities
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test
+
+django-admin startapp metrics
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test
+
+django-admin startapp resources
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test
+
+django-admin startapp standards
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test
 
 ################################################################################ (1)
 ################################################################################
@@ -310,103 +390,5 @@ Separacion de queryset
 Mejoramiento de los reponse http
 Comentarios en codigo
 Testeo en postman de los metodos CRUD
-.
-..
-.
-.
 
-..
-.
-.
-.
-.
-.
-.
-.
-
-..
-.
-.
-.
-.
-
-.
-
-django-admin startproject devstackcore . 
-    settings
-        base
-        local
-        production
-    aswg
-    yyyy
-    rrrr
-
-django-admin startapp users
-    api
-        urls
-        views
-        serializers
-        model
-    admin
-    app
-    test
-
-django-admin startapp projects
-    api
-        urls
-        views
-        serializers
-        model
-    admin
-    app
-    test
-
-django-admin startapp assets
-    api
-        urls
-        views
-        serializers
-        model
-    admin
-    app
-    test
-
-django-admin startapp activities
-    api
-        urls
-        views
-        serializers
-        model
-    admin
-    app
-    test
-
-django-admin startapp metrics
-    api
-        urls
-        views
-        serializers
-        model
-    admin
-    app
-    test
-
-django-admin startapp resources
-    api
-        urls
-        views
-        serializers
-        model
-    admin
-    app
-    test
-
-django-admin startapp standards
-    api
-        urls
-        views
-        serializers
-        model
-    admin
-    app
-    test
+=> ALIMENTACION DE LA BASE DE datos

@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
+from rest_framework import permissions
+
 
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -12,8 +14,12 @@ from apps.users.api.serializers import (
 )
 from apps.users.models import User
 
+
+
 class Login(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+    permission_classes = [permissions.AllowAny]
+ 
 
     def post(self, request, *args, **kwargs):
         username = request.data.get('username', '')
@@ -37,6 +43,8 @@ class Login(TokenObtainPairView):
         return Response({'error': 'Contraseña o nombre de usuario incorrectos'}, status=status.HTTP_400_BAD_REQUEST)
 
 class Logout(GenericAPIView):
+    serializer_class = CustomTokenObtainPairSerializer
+
     def post(self, request, *args, **kwargs):
         user = User.objects.filter(id=request.data.get('user', 0))
         if user.exists():

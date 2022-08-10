@@ -4,7 +4,8 @@ from datetime import timedelta
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-bs+3)=132_&x9enyxo@08r*kqly$&z(l*ayw_b4myk4^m_69iw'
@@ -60,6 +61,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     )
 }
+# IMPORTANTE LEER para dejer algunos enpoints publicos = https://es.stackoverflow.com/questions/415622/como-hacer-para-que-un-endpoint-no-me-exija-el-token-en-django
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,7 +80,8 @@ ROOT_URLCONF = 'devstackcore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        #'DIRS': [BASE_DIR / 'templates'], Añado el directorio de templates donde debe buscar QUE renderizar los url patters del archivo urls.py de las apps
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # Import os + variable BASE_DIR
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -152,6 +155,27 @@ STATIC_URL = '/static/'
 
 
 
+SWAGGER_SETTINGS = {
+    'DOC_EXPANSION':'none',
+}
+
+REDOC_SETTINGS = {
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 """
@@ -189,9 +213,34 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 # AttributeError: module 'django.contrib.admin' has no attribute 'ProgressreportModel' en e "C:\_devprog\Project\devstack_backdjango_python\apps\metrics\admin.py", line 12, in <module> class ProgressreportAdmin(admin.ProgressreportModel):
 # El error es que la importacion esta mal referenciada, se esta utilizando la palabra admin y no model
 
+# AssertionError: 'Logout' should either include a `serializer_class` attribute, or override the `get_serializer_class()` method.
+# Este error se genera porque en el logout no se ubico ningun serializador
+# Se soluciono, ubicando el serializer_class en la clase logut del views de users ----> serializer_class = CustomTokenObtainPairSerializer
+# https://stackoverflow.com/questions/62099191/genericapiview-should-either-include-a-serializer-class-attribute-or-override 
+# https://github.com/axnsan12/drf-yasg/issues/694
+
+# Error al correr las migraciones, no las completaba porque en la app metrics habia un modelo con campos foraneos que hacien relacion aun campo y eso no es permitido, solo se puyede relacionar el modelo pero no un campo en especifico
+# ←[31m  Your models in app(s): 'metrics' have changes that are not yet reflected in a migration, and so won't be applied.←[0m
+# ←[31m  Run 'manage.py makemigrations' to make new migrations, and then re-run 'manage.py migrate' to apply them.←[0m
+# Lo solucione haciendo referencia foranea solo al modelo y borrando la referencia al campo, luego ejecute makemigrations y luego migrste y corrio nomral
+
+# Para que u endpoint no exija autenticacion django ---> permission_classes = [permissions.AllowAny] dentro de la clase
+# https://es.stackoverflow.com/questions/415622/como-hacer-para-que-un-endpoint-no-me-exija-el-token-en-django
+
+# Queria cambiar el fondo de color de django admin, encontre como, cree el enturamientos y los paths y la carpeta templates quedo al pelo :D 
+# https://stackoverflow.com/questions/1926049/django-templatedoesnotexist#:~:text=Django%20TemplateDoesNotExist%20error%20means%20simply,.py%20)%20by%20TEMPLATE_DIRS%20setting.
 
 
 
 
 
 
+
+
+
+
+
+# ============> AUN SIN SOLUCIONAR hay algunos campos de los modelos que se pueden migrar, presumo que son los choises, o algunos default
+# ValueError: Cannot serialize: <django.db.models.query_utils.DeferredAttribute object at 0x00000207C5DBB370>
+# There are some values Django cannot serialize into migration files.
+# For more, see https://docs.djangoproject.com/en/4.0/topics/migrations/#migration-serializing

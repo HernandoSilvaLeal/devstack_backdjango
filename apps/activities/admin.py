@@ -33,4 +33,3 @@ class ResultsAdmin(models.ResultsModel):
 # RisksModel
 # ThreatsModel
 # ResultsModel
-

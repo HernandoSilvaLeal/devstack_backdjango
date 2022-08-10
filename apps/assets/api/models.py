@@ -21,21 +21,21 @@ class AssetsModel(BaseModel):
         ('personal', 'Personal'),
     )
     
-    options_substate = (
+    options_substate = (                            # Se necesita mejorar el modelo conforme a la teoeria de la ISO, con ams modelos o con mejores serializers, con campos dependientes.
         ('ninguna', 'Ninguna'),
-        ('fisico', 'Fisico'),
-        ('informatico', 'Informatico'),
-        ('servicio', 'Servicio'),
-        ('personal', 'Personal'),
+        ('sub estado a', 'Sub Estado A'),
+        ('sub estado c', 'Sub Estado C'),
+        ('sub estado i', 'Sub Estado I'),
+        ('sub estado d', 'Sub Estado D'),
     )
     name = models.CharField("Nombre del Activo", max_length=50, unique=True, blank=False, null=False)
     type = models.CharField('Tipo del Activo', max_length=20, choices=options_type, default=1)
-    appraisal = models.DecimalField('Avaluo', max_digits=5, decimal_places=2)
+    appraisal = models.DecimalField('Avaluo', max_digits=15, decimal_places=2)  # Investigar formato de moneda con $ y puntos -- > DecimalField format money
     description = models.TextField("Descripcion General", max_length=200, blank=False, null=False)
     company = models.ForeignKey(CompaniesModel, verbose_name="Empresa", on_delete=models.CASCADE)
     location = models.CharField("Nombre del Activo", max_length=50, unique=True, blank=False, null=False)
-    substate = models.CharField('Tipo del Activo', max_length=20, choices=options_substate, default=1)
-    Creacion = models.DateTimeField(auto_now_add=False)
+    substate = models.CharField('Subestado', max_length=20, choices=options_substate, default=1)
+    creacion = models.DateTimeField(auto_now_add=False)
     class Meta:
         ordering = ['-id']                                                                              # Orden descendente o ascendente        
         verbose_name = "AssetsModel"
@@ -130,4 +130,15 @@ class PersonalassetsModel(BaseModel):
     def __str__(self):
         return self.name
 
+# Mejoras al modelo:
+# Se necesitan 4 modelos mas, 1 para cada TIPO DE ACTIVO, y cada uno es para crear una lista de categorias
+# Luego de crearlos, actualizo la relacion foranea del campo category_assets de cada uno de los 4 modelos.
 
+# Luego necesito mejorar las relaciondes herencia, asserts es el padre de los 4 tipos, y los 4 tipos e el campo category son padres de sus respectivas categorias, 1 - 4 - 4
+# Lo LOGICO es que yo cree el activo en 1 de los 4 TIPOS y por ende la clase padre ACTICVOS debe ser metadato = abstracta.
+# AQUI --> Como actualizaste las relaciones de herencia de los 4 modelos de tiopos de activos (inform, serv, fisicos, personales) Revisa que cuando vayas a crear un activo, se diligencien los campos sumados de clase padre y 4 clases hijas.
+
+# Añadir un campo al modelo abstracto activos --> unverified asset ---> Funciona como una maquina de estados con 4 estados de diagnostico y gestion (unverified asset, check verify, correct, management)
+# Añadir 45 campos a la clase abstracta assets (Subestado A, ...c, ...i, ...d) ---> Luego cada uno con sus opstions (https://www.pmg-ssi.com/2015/03/iso-27001-los-activos-de-informacion/) 
+
+# IMPORTANTE antes de alimentar la base de datos ((inform, serv, fisicos, personales)) se deben nutrir las bases de datos de categorias (Relacion foranea que a esta altura ya se debio configurar "category_assets")

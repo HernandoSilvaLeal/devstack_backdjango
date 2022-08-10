@@ -15,8 +15,8 @@ class ProgressreportModel(BaseModel):
 
     project = models.ForeignKey(ProjectsModel, verbose_name=("Project Name"), on_delete=models.CASCADE)
     company = models.ForeignKey(CompaniesModel, verbose_name=("Company Name"), on_delete=models.CASCADE)
-    dateinitial = models.DateField(ProjectsModel.dateinitial, auto_now=False, auto_now_add=False) # Revisar relacion foranea a un campo especifico modelo projects
-    datecompletion = models.DateField(ProjectsModel.datecompletion, auto_now=False, auto_now_add=False) # Revisar relacion foranea a un campo especifico modelo projects
+    dateinitial = models.DateField(ProjectsModel, auto_now=False, auto_now_add=False) # Revisar relacion foranea a un campo especifico modelo projects
+    datecompletion = models.DateField(ProjectsModel, auto_now=False, auto_now_add=False) # Revisar relacion foranea a un campo especifico modelo projects
     adminproject = models.CharField('Responsable', max_length=50) # Revisar construccion de relacion con users
     auditorproject =  models.CharField('Responsable', max_length=50) # Revisar construccion de relacion con users
     leaderproject =  models.CharField('Responsable', max_length=50) # Revisar construccion de relacion con users

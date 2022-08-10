@@ -21,7 +21,7 @@ class ActivitiesModel(BaseModel):
         ('resultado', 'Resultado'),
     )
     
-    name_activity = models.CharField("Nombre de la Actividad", max_length=50, unique=True, blank=False, null=False)
+    name = models.CharField("Nombre de la Actividad", max_length=50, unique=True, blank=False, null=False)
     type_act = models.CharField('Tipo de Actividad', max_length=20, choices=options, default=1)
     referenceISO = models.CharField("Referencia a la Norma", max_length=50)
     description = models.TextField("Descripcion General", max_length=200, blank=False, null=False)

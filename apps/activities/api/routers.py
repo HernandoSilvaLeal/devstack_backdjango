@@ -12,9 +12,9 @@ router = DefaultRouter()
 # Zona activities del arbol de enrutamiento (endpoint disponibilizado)
 router.register(r'activities', ActivitiesViewSet, basename = 'activities') 
 router.register(r'controls', ControlsViewSet, basename = 'controls')
+router.register(r'results', ResultsViewSet, basename = 'results')
 router.register(r'risks', RisksViewSet, basename = 'risks')
 router.register(r'threats', ThreatsViewSet, basename = 'threats')
-router.register(r'results', ResultsViewSet, basename = 'results')
 
 # Iguala las ramificaciones normales de urlpatters a la ramificacion tipo router
 urlpatterns = router.urls                               

@@ -22,7 +22,7 @@ class BaseModel(models.Model):
     # TODO: Define fields here
     id = models.AutoField(primary_key = True)
     state = models.BooleanField('Estado',default = True)
-    created_date = models.DateField('Fecha de Creación', auto_now=False, auto_now_add=False)
+    created_date = models.DateField('Fecha de Creación', auto_now=False, auto_now_add=False, default='2022-08-05')
     modified_date = models.DateField('Fecha de Modificación', auto_now=True, auto_now_add=False)
     deleted_date = models.DateField('Fecha de Eliminación', auto_now=True, auto_now_add=False)
     objects = models.Manager()  # default manager
