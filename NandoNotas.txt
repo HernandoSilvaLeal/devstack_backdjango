@@ -1,0 +1,383 @@
+Revisar el tema de subir imagenes
+falta analizar los campos requeridos
+data de prueba
+
+
+django-admin startproject swdevstackcore
+
+django-admin startapp activities
+django-admin startapp assets
+django-admin startapp metrics
+django-admin startapp projects
+django-admin startapp resources
+django-admin startapp standards
+django-admin startapp users
+
+activities
+assets
+metrics
+projects
+resources
+standards
+users
+
+=> ModelActivities
+
+
+
+################################################################################ (1)
+################################################################################
+################################################################################ activities 
+
+activities
+router.register(r'activities', ActivitiesViewSet, basename = 'activities')
+router.register(r'controls', ControlsViewSet, basename = 'controls')
+router.register(r'risks', RisksViewSet, basename = 'risks')
+router.register(r'threats', ThreatsViewSet, basename = 'threats')
+router.register(r'results', ResultsViewSet, basename = 'results')
+
+Activities
+Controls
+Risks
+Threats
+Results
+
+-----------> MODELOS activities
+
+ActivitiesModel
+ControlsModel
+RisksModel
+ThreatsModel
+ResultsModel
+
+---------------------> Serializadores activities
+
+ActivitiesSerializer
+ControlsSerializer
+RisksSerializer
+ThreatsSerializer
+ResultsSerializer
+
+################################################################################ (2)
+################################################################################
+################################################################################ assets
+
+assets
+router.register(r'assets', AssetsViewSet, basename = 'assets')
+router.register(r'physicalassets', PhysicalassetsViewSet, basename = 'physicalassets')
+router.register(r'informationassets', InformationassetsViewSet, basename = 'informationassets')
+router.register(r'serviceassets', ServiceassetsViewSet, basename = 'serviceassets')
+router.register(r'personalassets', PersonalassetsViewSet, basename = 'personalassets')
+
+Assets
+Physicalassets
+Informationassets
+Serviceassets
+Personalassets
+
+-----------> MODELOS assets
+
+AssetsModel
+PhysicalassetsModel
+InformationassetsModel
+ServiceassetsModel
+PersonalassetsModel
+
+---------------------> Serializadores assets
+
+AssetsSerializer
+PhysicalassetsSerializer
+InformationassetsSerializer
+ServiceassetsSerializer
+PersonalassetsSerializer
+
+################################################################################ (3)
+################################################################################
+################################################################################ metrics
+
+
+router.register(r'progressreport', ProgressreportViewSet, basename = 'progressreport')
+router.register(r'indicators', IndicatorsViewSet, basename = 'indicators')
+router.register(r'calendar', CalendarViewSet, basename = 'calendar')
+
+
+Progressreport
+Indicators
+Calendar
+
+-----------> MODELOS metrics
+
+ProgressreportModel
+IndicatorsModel
+CalendarModel
+
+---------------------> Serializadores metrics
+
+ProgressreportSerializer
+IndicatorsSerializer
+CalendarSerializer
+
+################################################################################  (4)
+################################################################################
+################################################################################ projects
+
+projects
+router.register(r'projects', ProjectsViewSet, basename = 'projects')
+router.register(r'companies', CompaniesViewSet, basename = 'companies')
+router.register(r'stages', StagesViewSet, basename = 'stages')
+router.register(r'areas', AreasViewSet, basename = 'areas')
+
+Projects
+Companies
+Stages
+Areas
+
+-----------> MODELOS projects
+
+ProjectsModel
+CompaniesModel
+StagesModel
+AreasModel
+
+---------------------> Serializadores projects
+
+ProjectsSerializer
+CompaniesSerializer
+StagesSerializer
+AreasSerializer
+
+################################################################################  (5)
+################################################################################
+################################################################################ resources
+
+resources
+router.register(r'helps', HelpsViewSet, basename = 'helps')
+router.register(r'resourcecategory', ResourcecategoryViewSet, basename = 'resourcecategory')
+router.register(r'resources', ResourcesViewSet, basename = 'resources')
+
+Helps
+Resourcecategory
+Resources
+
+-----------> MODELOS resources
+
+HelpsModel
+ResourcecategoryModel
+ResourcesModel
+
+---------------------> Serializadores resources
+
+HelpsSerializer
+ResourcecategorySerializer
+ResourcesSerializer
+
+################################################################################  (6)
+################################################################################
+################################################################################ standards
+
+
+router.register(r'standards', StandardsViewSet, basename = 'helps')
+router.register(r'chapters', ChaptersViewSet, basename = 'chapters')
+router.register(r'articles', ArticlesViewSet, basename = 'articles')
+
+Standards
+Chapters
+Articles
+
+-----------> MODELOS standards
+
+StandardsModel
+ChaptersModel
+ArticlesModel
+
+---------------------> Serializadores standards
+
+StandardsSerializer
+ChaptersSerializer
+ArticlesSerializer
+
+################################################################################  (7)
+################################################################################
+################################################################################ users
+
+users
+router.register('', UserViewSet, basename="users")
+
+################################################################################
+################################################################################
+################################################################################
+
+django-admin startapp base
+Creacion de utils, models, apps, y api en la aplicacion base, base de los demas modelos
+
+=> Creacion de los modelos de las aplicaciones
+
+=> Creacion de las carpetas para las iamgenes
+
+=> Registro de las aplicaciones en el archivo settings.py --> base.py
+
+=> Registro de modelos en archivos admin de cada app
+
+=> Instalacion de pillow --> python -m pip install Pillow
+
+=> py manage.py runserver
+
+pip install django-simple-history
+simple_history.middleware.HistoryRequestMiddleware
+registro la app en settings
+registro el middleware en settings
+configuro la variable AUTH_USER_MODEL apuntando a mi modelo customizado
+registro la visual en el archivo admin de mi nueva app users
+
+==> 
+Realizo mi primera migracion ---> py manage.py makemigrations
+ERROR -----> HINT: Get Pillow at https://pypi.org/project/Pillow/ or run command "python -m pip install Pillow".←[0m
+No permite hacer la migracion porque dentro del modelo hay un campo imagen que necesita la libreria pillow
+python -m pip install Pillow
+reintento la migracion ---> py manage.py makemigrations 
+Migracion exitosa se creo el modelo User y el modelo HistoricalUser
+
+==> Como quiero que ahora se ahga la migraicon en mi bd de postgresql, creo la base de datos.
+voy a postgresql y creo la base datos llamada devstackdb
+actualizo los datos en local.py para que apunte a la base de datos correcta y ya no a la de sqlite
+debo instalar https://pypi.org/project/psycopg2-binary/
+pip install psycopg2-binary (Version instalada 2.9.3)
+ejecuto py manage.py migrate y corren las migraciones con normalidad, se aplican y en postgresql aparecen las tablas.
+    DB_HOST='localhost' 
+    DB_PORT='5432'
+    DB_USER='postgres' 
+    DB_PWD='Nandop*963'
+    DB_NAME='devstackdb' 
+    ***
+    DB_NAME_SERVER='serverpostgresql' 
+    DB_PASS_SERVER='Nandop*963'
+
+=> Creacion del super usuario
+py manage.py createsuperuser
+Se me presenta error KEY:'NAME' y se soluciona corrigiendo el espacio en settings
+creo el super ususario:
+    DevStudent
+    devstackproject@gmail.com
+    DevStudents
+    TeamDevstack
+    team2281573
+
+=> Realizo configuraciones de debuggueo
+
+
+=> Proceso para primer serializer y api_views
+en la app users, borro los archivos view y test, creo carpeta api y alli agrupare las urls, las vistas y los serializerz
+creo primero el serializador, basico y sencillo con su clase meta y listo.
+Creo luego mi primera vista, tipo APIView personalizada, con metodo get, con 3 pasos sencillos, queriset, serializer y response.
+Creo mi prime enrutamiento tipo basico urlspatterns en urls.py
+Conecto el eslabon de rutas creado a el urls.py principal, empezando a dar forma al arbol estructural.
+corrijo errores de sintaxis e importaciones.
+Inicio el servidor y reviso el http://127.0.0.1:8000/usuario/usuario/ las estrucuras de rooteo
+Reviso la data en formato json con la opcion nativa de django rest framework = http://127.0.0.1:8000/usuario/usuario/?format=json
+Todo ok y commit.
+
+=> Refactorizacion de codigo y testeo en postman
+Separacion de queryset
+Mejoramiento de los reponse http
+Comentarios en codigo
+Testeo en postman de los metodos CRUD
+.
+..
+.
+.
+
+..
+.
+.
+.
+.
+.
+.
+.
+
+..
+.
+.
+.
+.
+
+.
+
+django-admin startproject devstackcore . 
+    settings
+        base
+        local
+        production
+    aswg
+    yyyy
+    rrrr
+
+django-admin startapp users
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test
+
+django-admin startapp projects
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test
+
+django-admin startapp assets
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test
+
+django-admin startapp activities
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test
+
+django-admin startapp metrics
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test
+
+django-admin startapp resources
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test
+
+django-admin startapp standards
+    api
+        urls
+        views
+        serializers
+        model
+    admin
+    app
+    test

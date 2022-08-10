@@ -12,6 +12,16 @@ from django.utils import timezone
 # Parte 7: Funcion get_absolute_url, no se usan porque es DRF y no D = https://stackoverflow.com/questions/43179875/when-to-use-django-get-absolute-url-method
 # Parte 8: Herencia entre modelos --> https://pywombat.com/articles/herencias-modelos-django
 
+# Parte 0: Importaciones necesarias para las relaciones entre modelos.
+# Parte 1: Model ---> El nombre del modelo (Tabla o Entidad)
+# Parte 2: BaseModel ---> Modelo que hereda los campos del modelo base (Pk y demas)
+# Parte 3: Campos ---> Los fijados en el modelo MER (Atributos)
+# Parte 4: Clase Meta + Orderin --->  Definicion en los metadatos (Nombre del modelo)
+# Parte 5: Funcion __str__ ---> Representacion en Unicode
+# Parte 6: Funciones adicionales @
+# Parte 7: Funcion get_absolute_url, no se usan porque es DRF y no D = https://stackoverflow.com/questions/43179875/when-to-use-django-get-absolute-url-method
+# Parte 8: Herencia entre modelos --> https://pywombat.com/articles/herencias-modelos-django
+
 class BaseModel(models.Model):
     """Model definition for BaseModel."""
 
